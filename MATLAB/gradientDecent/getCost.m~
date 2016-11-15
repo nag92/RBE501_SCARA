@@ -1,0 +1,10 @@
+function [ output_args ] = getCost( lines, centers )
+%GETCOST Summary of this function goes here
+%   Detailed explanation goes here
+    cost = 
+    for ii= 1:length(lines)
+        cos
+    end
+
+end
+
