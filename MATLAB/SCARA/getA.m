@@ -8,7 +8,6 @@ function [ A ] = getA( links)
 %theta = link(4): joint angle (in degree);
 
 A= ones(4,4,length(links(:,1)));
-
 for ii = 1:length(links(:,1))
     
     a= links(ii,1);
@@ -17,8 +16,8 @@ for ii = 1:length(links(:,1))
     theta=links(ii,4);
 
     
-    %alpha = degtorad(alpha);
-    %theta = degtorad(theta);
+    alpha = degtorad(alpha);
+    theta = degtorad(theta);
 
     A(:,:,ii) = [ cos(theta) -sin(theta)*cos(alpha) sin(theta)*sin(alpha) a*cos(theta);
                  sin(theta)  cos(theta)*cos(alpha) -cos(theta)*sin(alpha) a*sin(theta);
