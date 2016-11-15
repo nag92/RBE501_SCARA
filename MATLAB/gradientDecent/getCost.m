@@ -3,7 +3,7 @@ function [cost] = getCost( lines, centers )
 %   Detailed explanation goes here
      
     for ii= 1:length(lines)
-        line = lines(ii,:)
+        line = lines(ii,:);
         cost(ii) = sum(getIntersection(line ,centers));
     end
     

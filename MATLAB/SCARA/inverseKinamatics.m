@@ -21,7 +21,7 @@ z2= z;
 
 a1 = 5.24;
 %Have to add two to account for the offset of the prismatic link
-a2=a1+2;
+a2=a1;
 if(abs(x) > 12.48 || abs(y) > 12.48 || sqrt( x^2 + y^2 ) >12.48 )
     angle = [0 0 0];
     return;

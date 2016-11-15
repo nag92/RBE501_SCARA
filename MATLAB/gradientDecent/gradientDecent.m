@@ -3,10 +3,11 @@ function [ q_storage ] = gradientDecent( q_s, q_f, box )
 %   Detailed explanation goes here
 % Link lengths
 a1 = 5.24;
-a2 = 5.24;
+a2 = a1+2;
 %q_s= [ 0;0];
 %q_f = [pi/2;pi/2];
-
+q_s = [q_s(1);q_s(2)];
+q_f = [q_f(1);q_f(2)];
 % Obstacle Coordinates
 yDist = 31.965;
 xDist = 39.75667;   
@@ -17,8 +18,8 @@ yList(:,1) =  (480 - ( 0.5*(box(:,2)+box(:,4))))/yDist ;
 % Xobs = box(1,:);
 % Yobs = box(2,:);
 
-Xobs = [ a1;-a1; p(1) ]
-Yobs = [ -1;  -1; p(2)]
+Xobs = [  p(1) ]
+Yobs = [  p(2)]
 % Plot Obstacles, and Manipulator Initial and Starting Configurations
 % XobsPlot = [a(1); b(1); c(1); a(1)];
 % YobsPlot = [a(2); b(2); c(2); a(2)];
@@ -77,9 +78,10 @@ d = 10;                 % distance that defines the transition from conic to par
 rho_o = 10;              % distance of influence for obstacles
 epsilon = 0.1;         % convergence tolerance
 
-q_storage = [q_s];      % Initialize matrix of via points
-
 q = q_s;
+q_storage = [q];      % Initialize matrix of via points
+
+
 M = magnitude2(q,q_f);
 i = 0;
 % Gradient Descent Algorithm from p.179
@@ -104,7 +106,7 @@ i = 0;
         q_new = q + alpha*tau/magnitude(tau);   % Calculate new q
         q_storage = [q_storage q_new];          % Add q to q_storage array
         q = q_new;                              % update q for next iteration
-        M = magnitude2(q,q_f)               % update M for next iteration
+        M = magnitude2(q,q_f)      ;         % update M for next iteration
         
         Xlinks = [0 ;O1(1); O2(1)];            
         Ylinks = [0 ;O1(2); O2(2)];
