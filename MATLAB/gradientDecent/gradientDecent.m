@@ -62,16 +62,16 @@ O1f = getO1(a1,a2,q_f);
 O2f = getO2(a1,a2,q_f)
 Xlinks = [0 ;O1f(1); O2f(1)];
 Ylinks = [0 ;O1f(2); O2f(2)];
-plot(Xlinks, Ylinks,'bd-')
+plot(Xlinks, Ylinks,'kd-')
 
 % % Attractive and Repulsive Field Parameters
 eta1 = 0;               % controls the relative influence of the repulsive potential for O1
-eta2 = 1;               % controls the relative influence of the repulsive potential for O2
-zeta1 = 0;              % controls the relative influence of the attractive potential for O1
-zeta2 = 10;              % controls the relative influence of the attractive potential for O2
-d = 10;                 % distance that defines the transition from conic to parabolic attractive wells
-rho_o = 10;              % distance of influence for obstacles
-epsilon = 0.1;         % convergence tolerance
+eta2 = 0;               % controls the relative influence of the repulsive potential for O2
+zeta1 = 10;              % controls the relative influence of the attractive potential for O1
+zeta2 = 20;              % controls the relative influence of the attractive potential for O2
+d = 50;                 % distance that defines the transition from conic to parabolic attractive wells
+rho_o = .1;              % distance of influence for obstacles
+epsilon = 0.05;         % convergence tolerance
 
 q = q_s;
 q_storage = [q];      % Initialize matrix of via points
@@ -98,7 +98,7 @@ i = 0;
         J2 = getJ2(q,a1,a2); % Jacobian for O2 evaluated at q
         tau = J1'*F_att_1 + J2'*F_att_2 + J1'*F_rep_1 + J2'*F_rep_2;  % From eq. 5.8
         
-        q_new = q + alpha*tau/magnitude(tau);   % Calculate new q
+        q_new = q - alpha*tau/magnitude(tau);   % Calculate new q
         q_storage = [q_storage q_new];          % Add q to q_storage array
         q = q_new;                              % update q for next iteration
         M = magnitude2(q,q_f)             % update M for next iteration
@@ -108,7 +108,7 @@ i = 0;
         plot(Xlinks, Ylinks,'bd-')             % Plot link geometry at q
 %       pause
 %       i=i+1;
-        pause(0.5)
+        pause(2)
         i=i+1;
 %          MovieFrames(i)=getframe;
 
