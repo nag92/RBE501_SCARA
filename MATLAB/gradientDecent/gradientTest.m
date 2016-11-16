@@ -31,19 +31,19 @@ end
 cost = getCost(lines,centers)
 
 [min, I] = min(cost);
-
-start = correctPoint( 0.5*(box(I,1)+box(I,3)),0.5*(box(I,2)+box(I,4))  )
-goal = correctPoint( 0.5*(box(I+1,1)+box(I+1,3)),0.5*(box(I+1,2)+box(I+1,4)));
+I
+start = correctPoint( (ox(3,1)+0.5*box(I,3)),(box(3,2)-0.5*box(I,4))  )
+goal = correctPoint( (box(4,1)+.5*box(4,3)),(box(4,2)-.5*box(4,4)))
 a1 = 5.24; 
-a2 = 5.24;
-start_ang = inverseKinamatics(start(1), start(2),0)
-goal_ang = inverseKinamatics(start(1), goal(2),0)
+a2 = a1+2;
+start_ang = inverseKinamatics(start(1), start(2),0);
+goal_ang = inverseKinamatics(goal(1), goal(2),0);
 
-start_ang(1:2)
-%getO2(a1,a2,start_ang(1:2)*(pi/180))
-
-gradientDecent( start_ang(1:2)*(pi/180), goal_ang(1:2)*(pi/180), box) 
-
+% %start_ang(1:2);
+getO2(a1,a2,goal_ang(1:2)*(pi/180))
+% 
+ gradientDecent( start_ang(1:2)*(pi/180), goal_ang(1:2)*(pi/180), box) 
+% % 
 
 
 
