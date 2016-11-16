@@ -43,8 +43,19 @@ box
 % %start_ang(1:2);
 %getO2(a1,a2,goal_ang(1:2)*(pi/180))
 % 
- gradientDecent( start_ang(1:2)*(pi/180), goal_ang(1:2)*(pi/180), box) 
-% % 
+q =  gradientDecent( start_ang(1:2)*(pi/180), goal_ang(1:2)*(pi/180), box)
+q(1,:)
+
+%q_filtered  = filter(coeff24hMA, 1, q(1,:));
+
+figure(2)
+hold on
+plot(q(1,:))
+%plot(q_filtered)
+t = linspace(0,length(q(1,:)),length(q(1,:)))
+p = polyfit(t,q(1,:),3)
+q_filtered = polyval(p,t)
+plot(t,q_filtered)
 
 
 

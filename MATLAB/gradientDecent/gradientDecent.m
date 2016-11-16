@@ -66,12 +66,12 @@ plot(Xlinks, Ylinks,'kd-')
 
 % % Attractive and Repulsive Field Parameters
 eta1 = 0;               % controls the relative influence of the repulsive potential for O1
-eta2 = 0;               % controls the relative influence of the repulsive potential for O2
+eta2 = 5;               % controls the relative influence of the repulsive potential for O2
 zeta1 = 10;              % controls the relative influence of the attractive potential for O1
 zeta2 = 20;              % controls the relative influence of the attractive potential for O2
 d = 50;                 % distance that defines the transition from conic to parabolic attractive wells
-rho_o = .1;              % distance of influence for obstacles
-epsilon = 0.05;         % convergence tolerance
+rho_o = 1;              % distance of influence for obstacles
+epsilon = 0.02;         % convergence tolerance
 
 q = q_s;
 q_storage = [q];      % Initialize matrix of via points
@@ -108,7 +108,7 @@ i = 0;
         plot(Xlinks, Ylinks,'bd-')             % Plot link geometry at q
 %       pause
 %       i=i+1;
-        pause(2)
+        %pause(2)
         i=i+1;
 %          MovieFrames(i)=getframe;
 
