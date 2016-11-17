@@ -1,4 +1,4 @@
-function [ q_storage ] = gradientDecent( q_s, q_f, box )
+ function [ q_storage ] = gradientDecent( q_s, q_f, box )
 %GRADIENTDECENT Summary of this function goes here
 %   Detailed explanation goes here
 % Link lengths
@@ -108,7 +108,7 @@ i = 0;
         plot(Xlinks, Ylinks,'bd-')             % Plot link geometry at q
 %       pause
 %       i=i+1;
-        %pause(2)
+        pause(2)
         i=i+1;
 %          MovieFrames(i)=getframe;
 

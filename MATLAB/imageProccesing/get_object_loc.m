@@ -3,15 +3,16 @@ function [ red_obj, green_obj, blue_obj ] = get_object_loc( port )
 %   Detailed explanation goes here
     
     %get an image
-    cam = webcam(port);
-    image= snapshot(cam);
-    
+    %cam = webcam(port);
+    %image= snapshot(cam);
+    img = load('objects.mat');
+    img = img.image;
     %Find objects and get the stats
     [red_blobs, green_blobs,blue_blobs]  = getBlobs(image);
     blobs = red_blobs | green_blobs | blue_blobs;
     se = strel('disk',5);
     blobs = imerode(blobs,se);
-    imshow(blobs)
+    %imshow(blobs)
     red_stats = regionprops(red_blobs,'all');
     green_stats = regionprops(green_blobs,'all');
     blue_stats = regionprops(blue_blobs,'all');
@@ -26,13 +27,13 @@ function [ red_obj, green_obj, blue_obj ] = get_object_loc( port )
     %info= [ shape, color]
     
     
-    hold on;
-    plot(centroids(:,1), centroids(:,2), 'b*');
-    for ii = 1 : size(box)
-        h = rectangle('Position',[ box(ii,1) box(ii,2) box(ii,3) box(ii,4)] ,'LineWidth',2);
-        set(h,'EdgeColor',char(c(ii)));
-
-    end
+%     hold on;
+%     plot(centroids(:,1), centroids(:,2), 'b*');
+%     for ii = 1 : size(box)
+%         h = rectangle('Position',[ box(ii,1) box(ii,2) box(ii,3) box(ii,4)] ,'LineWidth',2);
+%         set(h,'EdgeColor',char(c(ii)));
+% 
+%     end
 %     text(0,0,txt,...b
 %         'HorizontalAlignment','left',...
 %         'VerticalAlignment','top',...

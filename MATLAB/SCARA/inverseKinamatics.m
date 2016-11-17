@@ -33,19 +33,19 @@ if( x == 0 && y ==0)
 end
     
 
-theta2Temp = acosd( (x2^2 + y2^2 - a1^2 - a2^2)/(2*a1*a2));
+theta2 = -acosd( (x2^2 + y2^2 - a1^2 - a2^2)/(2*a1*a2));
 
 %If theta2 rotates more then 180 degrees
 %set theta2 to "real" degree but use theta2Temp to find theta1 and theta3
 
-if(theta2Temp<180)
-    theta2 = 360-theta2Temp;
-else
-    theta2 = theta2Temp;
-end
+% if(theta2Temp<180)
+%     theta2 = 360-theta2Temp;
+% else
+%     theta2 = theta2Temp;
+% end
 
 %Get theta 1
-theta1= atand(y2/x2)-atand( (a2*sind(theta2))/ (a1 + a2*cosd(theta2)));
+theta1= atan2d(y2,x2)- atan2d( (a2*sind(theta2)),(a1 + a2*cosd(theta2)));
 
 format short;
 angle = ([round(theta1),round(theta2),round(z)]);

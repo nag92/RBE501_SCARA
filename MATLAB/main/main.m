@@ -19,7 +19,7 @@ box = [red;green;blue];
 remove_box = box;
 % the object to grab
 index = 1
-for ii =1:3
+for ii =1:1
     
     % Get the location of the objects
     centers = getCenters(remove_box);
@@ -36,6 +36,7 @@ for ii =1:3
     else
         index = 5
     end
+    index
     
     % get the start goal position
     start = correctPoint((box(index,1)+0.5*box(index,3)),(box(index,2)-0.5*box(index,4)))
@@ -45,6 +46,13 @@ for ii =1:3
     % get the start, goal angles
     start_ang = inverseKinamatics(start(1), start(2),0);
     goal_ang = inverseKinamatics(goal(1), goal(2),0);
+    
+    % get the joint angles
+    q =  gradientDecent( start_ang(1:2)*(pi/180), goal_ang(1:2)*(pi/180), box);
+    % smooth the joint angles
+    t = linspace(0,length(q(1,:)),length(q(1,:)));
+    p = polyfit(t,q(1,:),3);
+    q_filtered = polyval(p,t);
     
     
 end
