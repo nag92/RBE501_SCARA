@@ -18,30 +18,31 @@ blue = blue.blue.box;
 box = [red;green;blue];
 remove_box = box;
 % the object to grab
-index = 1
-for ii =1:1
-    
+index = 1;
+for ii =1:3
+    remove_box
     % Get the location of the objects
-    centers = getCenters(remove_box);
+    [centers, lines] = getCenters(remove_box);
     % this function find the path that will cross over the 
-    cost = getCost(lines,centers)
+    cost = getCost(lines,centers);
     % get the shorest path
-    [min, I] = min(cost);
+    
+    [minVal, I] = min(cost)
     
     % the object location in the image
     if I == 1
-        index = 1
+        index = 1;
     elseif I == 2
-        index = 3
+        index = 3;
     else
-        index = 5
+        index = 5;
     end
-    index
+    
     
     % get the start goal position
-    start = correctPoint((box(index,1)+0.5*box(index,3)),(box(index,2)-0.5*box(index,4)))
-    goal = correctPoint((box(index+1,1)+.5*box(index+1,3)),(box(index+1,2)-.5*box(index+1,4)))
-    box(index:index+1,:) =[];
+    start = correctPoint((remove_box(index,1)+0.5*remove_box(index,3)),(remove_box(index,2)-0.5*remove_box(index,4)));
+    goal = correctPoint((remove_box(index+1,1)+.5*remove_box(index+1,3)),(remove_box(index+1,2)-.5*remove_box(index+1,4)));
+    remove_box(index:index+1,:) =[];
     
     % get the start, goal angles
     start_ang = inverseKinamatics(start(1), start(2),0);
@@ -52,7 +53,7 @@ for ii =1:1
     % smooth the joint angles
     t = linspace(0,length(q(1,:)),length(q(1,:)));
     p = polyfit(t,q(1,:),3);
-    q_filtered = polyval(p,t);
+    q_filtered = polyval(p,t)
     
     
 end

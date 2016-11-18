@@ -6,7 +6,7 @@ a1 = 5.24;
 a2 = a1+2;
 %q_s= [ 0;0];
 %q_f = [pi/2;pi/2];
-q_s = [q_s(1);q_s(2)]
+q_s = [q_s(1);q_s(2)];
 q_f = [q_f(1);q_f(2)];
 % Obstacle Coordinates
 yDist = 31.965;
@@ -15,23 +15,23 @@ p = correctPoint(0.5*(box(:,1)+box(:,3)),0.5*(box(:,3)+box(:,4))) ;
 xList(:,1) =  (0.5*(box(:,1)+box(:,3)))/xDist  - 640/(2*xDist);
 yList(:,1) =  (480 - ( 0.5*(box(:,2)+box(:,4))))/yDist ;
 % 
-% Xobs = box(1,:);
-% Yobs = box(2,:);
+ Xobs = box(1,:);
+ Yobs = box(2,:);
 
-Xobs = [  p(1) ]
-Yobs = [  p(2)]
+Xobs = [ 0  0 p(1) ];
+Yobs = [ -a1 -a2 p(2)];
 % Plot Obstacles, and Manipulator Initial and Starting Configurations
 % XobsPlot = [a(1); b(1); c(1); a(1)];
 % YobsPlot = [a(2); b(2); c(2); a(2)];
 
 
 scrsz = get(0,'ScreenSize');
-%figure('Position',[100 scrsz(4)/2 scrsz(3)/2 scrsz(4)/2])
+figure('Position',[100 scrsz(4)/2 scrsz(3)/2 scrsz(4)/2])
 figure('Position',[100 scrsz(4)/4 scrsz(3)/2 scrsz(4)/2])
-size(box)
-%axis( [-6 6 0 20  ] )
+
+axis( [-6 6 0 20  ] )
 axis('equal')  
-for ii = 1 : size(box)
+    for ii = 1 : size(box)
         p =  correctPoint(box(ii,1),box(ii,2)); 
         p1 = p(1);
         p2 = p(2);
@@ -50,7 +50,7 @@ hold on
 
 % Plot Manipulator Starting Configuration
 O1s = getO1(a1,a2,q_s);
-O2s = getO2(a1,a2,q_s)
+O2s = getO2(a1,a2,q_s);
 Xlinks = [0; O1s(1); O2s(1)];
 Ylinks = [0; O1s(2); O2s(2)];
 plot(Xlinks, Ylinks,'kd-')
@@ -59,10 +59,10 @@ plot(Xlinks, Ylinks,'kd-')
 
 % Plot Manipulator Final (Goal) Configuration
 O1f = getO1(a1,a2,q_f);
-O2f = getO2(a1,a2,q_f)
+O2f = getO2(a1,a2,q_f);
 Xlinks = [0 ;O1f(1); O2f(1)];
 Ylinks = [0 ;O1f(2); O2f(2)];
-plot(Xlinks, Ylinks,'kd-')
+plot(Xlinks, Ylinks,'kd-');
 
 % % Attractive and Repulsive Field Parameters
 eta1 = 0;               % controls the relative influence of the repulsive potential for O1
@@ -71,7 +71,7 @@ zeta1 = 10;              % controls the relative influence of the attractive pot
 zeta2 = 20;              % controls the relative influence of the attractive potential for O2
 d = 50;                 % distance that defines the transition from conic to parabolic attractive wells
 rho_o = 1;              % distance of influence for obstacles
-epsilon = 0.02;         % convergence tolerance
+epsilon = 0.1;         % convergence tolerance
 
 q = q_s;
 q_storage = [q];      % Initialize matrix of via points
@@ -108,7 +108,7 @@ i = 0;
         plot(Xlinks, Ylinks,'bd-')             % Plot link geometry at q
 %       pause
 %       i=i+1;
-        pause(2)
+        %pause(2)
         i=i+1;
 %          MovieFrames(i)=getframe;
 
