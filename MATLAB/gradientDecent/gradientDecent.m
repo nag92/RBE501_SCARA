@@ -15,8 +15,10 @@ p = correctPoint(0.5*(box(:,1)+box(:,3)),0.5*(box(:,3)+box(:,4))) ;
 xList(:,1) =  (0.5*(box(:,1)+box(:,3)))/xDist  - 640/(2*xDist);
 yList(:,1) =  (480 - ( 0.5*(box(:,2)+box(:,4))))/yDist ;
 % 
- Xobs = box(1,:);
- Yobs = box(2,:);
+
+
+Xobs = box(1,:);
+Yobs = box(2,:);
 
 Xobs = [ 0  0 p(1) ];
 Yobs = [ -a1 -a2 p(2)];
@@ -101,7 +103,7 @@ i = 0;
         q_new = q - alpha*tau/magnitude(tau);   % Calculate new q
         q_storage = [q_storage q_new];          % Add q to q_storage array
         q = q_new;                              % update q for next iteration
-        M = magnitude2(q,q_f)             % update M for next iteration
+        M = magnitude2(q,q_f) ;            % update M for next iteration
         
         Xlinks = [0 ;O1(1); O2(1)];            
         Ylinks = [0 ;O1(2); O2(2)];
