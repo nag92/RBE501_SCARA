@@ -1,14 +1,14 @@
 function [centers, lines ] = getCenters( box )
 %GETCENTERS Summary of this function goes here
 %   Detailed explanation goes here
-ii = 1;
-index = 1;
-lines = [];
-jj = 1;
-kk = 2;
+    ii = 1;
+    index = 1;
+    lines = [];
+    jj = 1;
+    kk = 2;
     centers = [];
     lines = [];
-    length(box)
+    
 
     while ii < length(box(:,1))
 
