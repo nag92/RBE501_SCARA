@@ -20,14 +20,15 @@ remove_box = box;
 % the object to grab
 index = 1;
 for ii =1:3
-    remove_box
+    
+    
     % Get the location of the objects
     [centers, lines] = getCenters(remove_box);
     % this function find the path that will cross over the 
     cost = getCost(lines,centers);
     % get the shorest path
     
-    [minVal, I] = min(cost)
+    [minVal, I] = min(cost);
     
     % the object location in the image
     if I == 1
@@ -52,10 +53,32 @@ for ii =1:3
     q =  gradientDecent( start_ang(1:2)*(pi/180), goal_ang(1:2)*(pi/180), box);
     % smooth the joint angles
     t = linspace(0,length(q(1,:)),length(q(1,:)));
-    p = polyfit(t,q(1,:),3);
-    q_filtered = polyval(p,t)
+    q1  = polyfit(t,q(1,:),3);
+    q2  = polyfit(t,q(2,:),3);
+    q_filtered{ii,1} = polyval(q1,t)
+    q_filtered{ii,2} = polyval(q2,t)
     
     
 end
+
+time = 5;
+
+
+poly_s1 = [planTraj(0,q_filtered{1,1}(1),time);planTraj(0,q_filtered{1,2}(2),time)];
+
+poly_12 = [planTraj( q_filtered{1,1}(end),q_filtered{2,1}(1),time);...
+           planTraj(q_filtered{1,2}(end),q_filtered{2,2}(1),time)];
+
+poly_23 = [planTraj(q_filtered{2,1}(end),q_filtered{3,1}(1),time);...
+           planTraj(q_filtered{2,2}(end),q_filtered{3,1}(1),time)];
+
+q_s1 = [ polyval(poly_s1(1,:),0:time );polyval(poly_s1(2,:),0:time )];
+q_12 = [ polyval(poly_12(1,:),0:time );polyval(poly_12(2,:),0:time )];
+q_23 = [ polyval(poly_23(1,:),0:time );polyval(poly_23(2,:),0:time )];
+
+
+totalPath = {q_s1(1,:),q_s1(2,:);q_filtered{1,1},q_filtered{1,2};...
+             q_12(1,:),q_12(2,:);q_filtered{2,1},q_filtered{2,2};...
+             q_23(1,:),q_23(2,:);q_filtered{3,1},q_filtered{3,2} }
 
 
