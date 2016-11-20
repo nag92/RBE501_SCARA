@@ -1,7 +1,7 @@
 function [ centroids , box,shape,color ] = blobAnyalsiser( stats )
     %{
         BLOBANYALSISER 
-        5/23/14
+        
 
         This fuction anyalize and gathers information about an image based on the
         blobs decteced in it

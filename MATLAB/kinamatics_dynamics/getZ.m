@@ -1,6 +1,6 @@
 function [ z ] = getZ( T )
 %GETZ 
-%Nathaniel Goldfarb 2/16/14
+%Nathaniel Goldfarb 
 %This function takes in a matrix of DH transformations and returns the
 %The Z matrix is a 1x3 matrix made up of the first 3 elements of the 3rd
 %column.

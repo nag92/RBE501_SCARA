@@ -1,6 +1,6 @@
 %{
-  Nathaniel Goldfarn
-  1/31/15
+  Nathaniel Goldfarb
+ 
 
   inverseKinamatics
   Calculate the invearse kinamatics for the SCARA manipulator

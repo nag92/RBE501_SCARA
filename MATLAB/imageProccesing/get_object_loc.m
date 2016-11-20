@@ -1,24 +1,28 @@
-function [ red_obj, green_obj, blue_obj ] = get_object_loc( port )
-%GET_OBJECT_LOC Summary of this function goes here
-%   Detailed explanation goes here
-    
+function [ red_obj, green_obj, blue_obj ] = get_object_loc( image )
+%{  
+   GET_OBJECT_LOC, find the location of the objects in an image
+    This function takes in an image and out puts data structs for each
+    object. 
+%}    
+    % stuff for testing
     %get an image
     %cam = webcam(port);
     %image= snapshot(cam);
-    img = load('objects.mat');
-    img = img.image;
+    %img = load('objects.mat');
+    %img = img.image;
+    img = image;
     %Find objects and get the stats
     [red_blobs, green_blobs,blue_blobs]  = getBlobs(image);
     blobs = red_blobs | green_blobs | blue_blobs;
     se = strel('disk',5);
     blobs = imerode(blobs,se);
     %imshow(blobs)
+    % mark the images
     red_stats = regionprops(red_blobs,'all');
     green_stats = regionprops(green_blobs,'all');
     blue_stats = regionprops(blue_blobs,'all');
     stats = regionprops(blobs,'all');
-    %get the color of the objects
-    
+    %get the color,shape,location of the objects
     [red_centroids , red_box, red_shape, red_c] = blobAnyalsiser(red_stats);
     [green_centroids , green_box, green_shape, green_c] = blobAnyalsiser(green_stats);
     [blue_centroids , blue_box, blue_shape, blue_c] = blobAnyalsiser(blue_stats);

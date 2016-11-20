@@ -1,5 +1,5 @@
 function [ j] = getPrisJ( z )
-%Nathaniel Goldfarb 2/16/14
+%Nathaniel Goldfarb 
 %getRevJ returns the Jacobian of a prismatic joint
 %inputs:
 %z: 1X3 matrix

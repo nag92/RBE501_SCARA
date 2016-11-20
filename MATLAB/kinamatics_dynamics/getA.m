@@ -1,5 +1,5 @@
 function [ A ] = getA( links)
-%Nathniel Goldfarb 2/3/14
+%Nathniel Goldfarb
 %getA returns the Ai matrix for a basic DH matrix
 %   link 1X4 matrix to containg 
 %a = link(1): link length;

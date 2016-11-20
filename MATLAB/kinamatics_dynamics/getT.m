@@ -1,6 +1,6 @@
 function [ T ] = getT( A )
 %getT 
-%Nathaniel Goldfarb 2/4/14;
+%Nathaniel Goldfarb
 %Inputs:
 %A: a 4x4xn matrix of 'A' matrixes formed by DH parameters. The n is the 'A' matrix for the nth link. 
 %Outputs:

@@ -1,5 +1,5 @@
 function [ j] = getRevJ( z,on,o )
-%Nathaniel Goldfarb 2/16/14
+%Nathaniel Goldfarb 
 %getRevJ returns the Jacobian of a revolute joint
 %inputs:
 %z: 1X3 matrix

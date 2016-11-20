@@ -1,6 +1,12 @@
 function [ p ] = correctPoint( x,y )
-%CORRECTPOINT Summary of this function goes here
-%   Detailed explanation goes here
+%{
+   CORRECTPOINT, finds the real location of the object from pixels
+   ARGUMENTS:
+            x: x pixel
+            y: y pixel
+    RETURN:
+            p: real location
+%}
 yDist = 31.965;
 xDist = 39.75667;
 
