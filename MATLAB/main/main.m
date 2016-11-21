@@ -13,6 +13,7 @@ green = load('green2')
 red = red.red.box;
 green = green.green.box;
 blue = blue.blue.box;
+fig = 4;
 %%
 
 box = [red;green;blue];
@@ -53,11 +54,26 @@ for ii =1:3
     q =  gradientDecent( start_ang(1:2)*(pi/180), goal_ang(1:2)*(pi/180), box);
     % smooth the joint angles
     t = linspace(0,length(q(1,:)),length(q(1,:)));
-    q1  = polyfit(t,q(1,:),3);
-    q2  = polyfit(t,q(2,:),3);
-    q_filtered{ii,1} = polyval(q1,t)
-    q_filtered{ii,2} = polyval(q2,t)
-    
+    pq1  = polyfit(t,q(1,:),3);
+    pq2  = polyfit(t,q(2,:),3);
+    temp1 = polyval(pq1,t)
+    temp2 = polyval(pq2,t)
+    q_filtered{ii,1} = temp1;
+    q_filtered{ii,2} = temp2
+
+    %%
+    figure(fig);
+    hold on
+    plot(t,q(1,:))
+    plot(t,q(2,:));
+    plot(t,temp1);
+    plot(t,temp2);
+    title([ 'path ' num2str(fig -3)])
+    ylabel('theta (rad)');
+    xlabel('time (s)')
+    legend('theta1 raw','theta2 raw','theta1 smoothed','theta2 smoothed' );
+    fig = fig +1;
+    %%
     
 end
 

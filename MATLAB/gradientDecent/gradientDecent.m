@@ -1,4 +1,4 @@
-     function [ q_storage ] = gradientDecent( q_s, q_f, box )
+function [ q_storage ] = gradientDecent( q_s, q_f, box )
 %GRADIENTDECENT Summary of this function goes here
 %   Detailed explanation goes here
 % Link lengths
@@ -10,7 +10,8 @@ q_s = [q_s(1);q_s(2)];
 q_f = [q_f(1);q_f(2)];
 % Obstacle Coordinates
 yDist = 31.965;
-xDist = 39.75667;   
+xDist = 39.75667;  
+
 p = correctPoint(0.5*(box(:,1)+box(:,3)),0.5*(box(:,3)+box(:,4))) ;
 xList(:,1) =  (0.5*(box(:,1)+box(:,3)))/xDist  - 640/(2*xDist);
 yList(:,1) =  (480 - ( 0.5*(box(:,2)+box(:,4))))/yDist ;
@@ -29,19 +30,18 @@ Yobs = [ -a1 -a2 p(2)];
 
 scrsz = get(0,'ScreenSize');
 figure('Position',[100 scrsz(4)/2 scrsz(3)/2 scrsz(4)/2])
-figure('Position',[100 scrsz(4)/4 scrsz(3)/2 scrsz(4)/2])
 
-axis( [-6 6 0 20  ] )
+%axis( [-6 6 0 20  ] )
 axis('equal')  
-    for ii = 1 : size(box)
-        p =  correctPoint(box(ii,1),box(ii,2)); 
-        p1 = p(1);
-        p2 = p(2);
-        p3 = box(ii,3)/xDist;
-        p4 = box(ii,4)/yDist;
-        h = rectangle('Position',[ p1  p2 p3 p4] ,'LineWidth',2);
-        set(h,'EdgeColor',char('r'));
-    end
+for ii = 1 : size(box)
+    p =  correctPoint(box(ii,1),box(ii,2)); 
+    p1 = p(1);
+    p2 = p(2);
+    p3 = box(ii,3)/xDist;
+    p4 = box(ii,4)/yDist;
+    h = rectangle('Position',[ p1  p2 p3 p4] ,'LineWidth',2);
+    set(h,'EdgeColor',char('r'));
+end
 
 hold on 
 
