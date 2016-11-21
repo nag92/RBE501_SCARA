@@ -1,4 +1,4 @@
- function [ q_storage ] = gradientDecent( q_s, q_f, box )
+     function [ q_storage ] = gradientDecent( q_s, q_f, box )
 %GRADIENTDECENT Summary of this function goes here
 %   Detailed explanation goes here
 % Link lengths
