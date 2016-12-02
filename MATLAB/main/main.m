@@ -3,7 +3,7 @@ close all;
 clc;
 % get the objects in the image
 
-%[ red_obj, green_obj, blue_obj ] = get_object_loc( port );
+[ red_obj, green_obj, blue_obj ] = get_object_loc( 3 );
 
 %%
 % temperoray until the camera is added. 
@@ -62,6 +62,7 @@ for ii =1:3
     q_filtered{ii,2} = temp2
 
     %%
+     fig = fig +1;
     figure(fig);
     hold on
     plot(t,q(1,:))
@@ -72,7 +73,7 @@ for ii =1:3
     ylabel('theta (rad)');
     xlabel('time (s)')
     legend('theta1 raw','theta2 raw','theta1 smoothed','theta2 smoothed' );
-    fig = fig +1;
+   
     %%
     
 end
@@ -80,7 +81,7 @@ end
 time = 5;
 
 
-poly_s1 = [planTraj(0,q_filtered{1,1}(1),time);planTraj(0,q_filtered{1,2}(2),time)];
+poly_s1 = [planTraj(0,q_filtered{1,1}(1),time);planTraj(0,q_filtered{1,2}(1),time)];
 
 poly_12 = [planTraj( q_filtered{1,1}(end),q_filtered{2,1}(1),time);...
            planTraj(q_filtered{1,2}(end),q_filtered{2,2}(1),time)];
@@ -88,13 +89,16 @@ poly_12 = [planTraj( q_filtered{1,1}(end),q_filtered{2,1}(1),time);...
 poly_23 = [planTraj(q_filtered{2,1}(end),q_filtered{3,1}(1),time);...
            planTraj(q_filtered{2,2}(end),q_filtered{3,1}(1),time)];
 
-q_s1 = [ polyval(poly_s1(1,:),0:time );polyval(poly_s1(2,:),0:time )];
-q_12 = [ polyval(poly_12(1,:),0:time );polyval(poly_12(2,:),0:time )];
-q_23 = [ polyval(poly_23(1,:),0:time );polyval(poly_23(2,:),0:time )];
+q_s1 = [ polyval(fliplr(poly_s1(1,:)),0:time );polyval(fliplr(poly_s1(2,:)),0:time )];
+q_12 = [ polyval(fliplr(poly_12(1,:)),0:time );polyval(fliplr(poly_12(2,:)),0:time )];
+q_23 = [ polyval(fliplr(poly_23(1,:)),0:time );polyval(fliplr(poly_23(2,:)),0:time )];
 
 
 totalPath = {q_s1(1,:),q_s1(2,:);q_filtered{1,1},q_filtered{1,2};...
              q_12(1,:),q_12(2,:);q_filtered{2,1},q_filtered{2,2};...
              q_23(1,:),q_23(2,:);q_filtered{3,1},q_filtered{3,2} }
 
-
+         
+         
+         
+save('totalPath','totalPath')
