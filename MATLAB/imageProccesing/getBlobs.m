@@ -5,8 +5,8 @@ img = oringal;
 img(:,1:150,:) = 0;
 img(:,500:end,:) = 0;
 img(1:5,:,:) = 0;
-figure(2)
-imshow(img);
+%figure(2)
+%imshow(img);
 
 
 %%
@@ -42,8 +42,8 @@ end
 blur_red = imgaussfilt(red);
 blur_green = imgaussfilt(green);
 blur_blue = imgaussfilt(blue);  
-figure(3)
-imshow(blur_green)
+%figure(3)
+%imshow(blur_green)
 %figure(2)
 %imshow(blur_blue);
 %%
@@ -63,8 +63,8 @@ bw_green = im2bw(blur_green, thresh_green);
 bw_blue = im2bw(blur_blue, thresh_blue);
 bw_blue = bwareaopen(bw_blue,300);
 
-figure(5);
-imshow(bw_green);
+%figure(5);
+%imshow(bw_green);
 %%
 %fill in white holes
 red_filled = imclearborder(imfill(bw_red, 'holes'));

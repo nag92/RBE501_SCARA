@@ -8,9 +8,10 @@ function [ red_obj, green_obj, blue_obj ] = get_object_loc( image )
     %get an image
     %cam = webcam(port);
     %image= snapshot(cam);
-    %img = load('objects.mat');
-    %img = img.image;
-    img = image;
+    img = load('objects2.mat');
+    image = img.image;
+    imshow(image)
+    
     %Find objects and get the stats
     [red_blobs, green_blobs,blue_blobs]  = getBlobs(image);
     blobs = red_blobs | green_blobs | blue_blobs;
@@ -31,18 +32,19 @@ function [ red_obj, green_obj, blue_obj ] = get_object_loc( image )
     %info= [ shape, color]
     
     
-%     hold on;
-%     plot(centroids(:,1), centroids(:,2), 'b*');
-%     for ii = 1 : size(box)
-%         h = rectangle('Position',[ box(ii,1) box(ii,2) box(ii,3) box(ii,4)] ,'LineWidth',2);
-%         set(h,'EdgeColor',char(c(ii)));
-% 
-%     end
+    hold on;
+    plot(centroids(:,1), centroids(:,2), 'b*');
+    for ii = 1 : size(box)
+        h = rectangle('Position',[ box(ii,1) box(ii,2) box(ii,3) box(ii,4)] ,'LineWidth',2);
+        set(h,'EdgeColor',char(c(ii)));
+
+    end
 %     text(0,0,txt,...b
 %         'HorizontalAlignment','left',...
 %         'VerticalAlignment','top',...
 %         'BackgroundColor','black',...
 %         'fontsize',16);
+    
     red_obj = [red_centroids, red_shape ];
     blue_obj = [blue_centroids, blue_shape ];
     green_obj = [green_centroids, green_shape ];
