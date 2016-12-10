@@ -4,4 +4,9 @@ The MATLAB code is splite into sperate folders on there functionanlity.
 The folder SCARA has all the code to control the phyical arm and the GUI.
 The folder imageprocessing contains all the code for the image capture and anylsis.
 the folder gradcents cotains all the code for planning a gradient decent path. 
-The main folder contains the main file to kick off the program as well as some connecting code. 
+The main folder contains the main file to kick off the program as well as some connecting code.
+ 
+ To run the simualation or gather data ensure all the folders are in the path. 
+ 
+ run main/main.m for the graphs and data
+ run main/simulationMovie.m for the simulation 
