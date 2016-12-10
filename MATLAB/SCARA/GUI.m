@@ -321,7 +321,7 @@ if (handles.user.serialstatus==1)
 end
 pause(3);
 
-pos = camera(3);
+pos = cameraOLD(3);
 
 x = 14 - pos(1);
 y = pos(2);

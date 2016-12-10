@@ -3,8 +3,10 @@
 clear;
 cam = webcam(3);
 preview(cam)
+%%
 %pause(1);
-%img = snapshot(cam);
+img = snapshot(cam);
+img(:,500:end,:) = 0;
 %figure(1)
 %imshow(img);
 %h = imdistline;
@@ -39,14 +41,15 @@ end
 %altGray = gray;
 [y,x] =  size(altGray)
 altGray(1:100.,1:end)=0;
-%altGray(y-120:end,1:end)=0;
+%altGray(:,500:end) = 1;
+altGray(450:480,1:end)=0;
 figure(4);
 imshow(altGray);
 %%
 %turn binary and close small holes
 threshold = graythresh(gray);
 bw = im2bw(altGray, threshold);
-bw = bwareaopen(bw,500);
+    bw = bwareaopen(bw,500);
 figure(5);
 imshow(bw);
 %%
